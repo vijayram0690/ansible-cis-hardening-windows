@@ -1,10 +1,10 @@
 ---
 - hosts: win
 - import_playbook: lgpo.yml
-- import_playbook: assessorcli.yml
+#- import_playbook: assessorcli.yml
 - import_playbook: localpolicies.yml
 - import_playbook: windowsfirewall.yml
 - import_playbook: advancedauditpolicyconfiguration.yml
 - import_playbook: administrativetemplatescomputer.yml
 - import_playbook: secedit.yml
-- import_playbook: assessorcli.yml
+#- import_playbook: assessorcli.yml

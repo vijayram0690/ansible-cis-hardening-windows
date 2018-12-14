@@ -46,3 +46,23 @@
         section: System Access
         key: LockoutDuration
         value: 15
+    - name: 2.2.1 (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'
+      win_security_policy:
+        section: Privilege Rights
+        key: SeTrustedCredManAccessPrivilege
+        value: ""
+     - name: 2.2.2 (L1) Configure 'Access this computer from the network'
+      win_security_policy:
+        section: Privilege Rights
+        key: SeNetworkLogonRight
+        value: "*S-1-1-0,*S-1-5-32-544,*S-1-5-32-545,*S-1-5-32-551"
+    - name: 2.2.5 (L1) Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'
+      win_security_policy:
+        section: Privilege Rights
+        key: SeTcbPrivilege
+        value: ""    
+    - name: 2.2.6 (L1) Ensure 'Allow log on locally' is set to 'Administrators'
+      win_security_policy:
+        section: Privilege Rights
+        key: SeInteractiveLogonRight
+        value: "*S-1-5-32-544"                
