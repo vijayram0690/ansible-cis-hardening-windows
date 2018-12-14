@@ -1,0 +1,22 @@
+---
+- hosts: win
+  tasks:
+    - name: create security policy directories
+      win_file:
+        path: "{{item}}"
+        state: directory
+      with_items:
+       - "C:\\SecOps"
+
+    - name: create assessor cli on host
+      win_copy:
+        src: ~/Ansible/meta/Assessor-CLI-4.0.2.zip
+        dest: "C:\\SecOps\\Assessor-CLI-4.0.2.zip"
+
+    - name: unzip file
+      win_unzip:
+        src: "C:\\SecOps\\Assessor-CLI-4.0.2.zip"
+        dest: "C:\\SecOps\\Assessor-CLI-4.0.2"
+
+    - name: run assessor batch file
+      win_command: C:\SecOps\Assessor-CLI-4.0.2\Assessor-CLI\Assessor-CLI.bat -b C:\SecOps\Assessor-CLI-4.0.2\Assessor-CLI\benchmarks\CIS_Microsoft_Windows_Server_2012_R2_Benchmark_v2.3.0-xccdf.xml -csv

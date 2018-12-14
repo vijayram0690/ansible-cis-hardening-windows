@@ -1,0 +1,47 @@
+---
+- hosts: win
+  tasks:
+    - name: "17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Credential Validation" /success:enable /failure:enable
+
+    - name: "17.2.1 (L1) Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Application Group Management" /success:enable /failure:enable
+      
+    - name: "17.2.2 (L1) Ensure 'Audit Other Account Management Events' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Other Account Management Events" /success:enable /failure:enable
+
+    - name: "17.2.4 (L1) Ensure 'Audit Security Group Management' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Security Group Management" /success:enable /failure:enable
+
+    - name: "17.2.5 (L1) Ensure 'Audit User Account Management' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"User Account Management" /success:enable /failure:enable
+
+    - name: "17.3.1 (L1) Ensure 'Audit Process Creation' is set to 'Success'"
+      win_command: Auditpol /set /subcategory:"Process Creation" /success:enable
+
+    - name: "17.5.1 (L1) Ensure 'Audit Account Lockout' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Account Lockout" /success:enable /failure:enable
+
+    - name: "17.5.2 (L1) Ensure 'Audit Logoff' is set to 'Success'"
+      win_command: Auditpol /set /subcategory:"Logoff" /success:enable
+
+    - name: "17.5.3 (L1) Ensure 'Audit Logon' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Logon" /success:enable /failure:enable
+
+    - name: "17.8.1 (L1) Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Sensitive Privilege Use" /success:enable /failure:enable
+
+    - name: "17.9.1 (L1) Ensure 'Audit IPsec Driver' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"IPsec Driver" /success:enable /failure:enable
+
+    - name: "17.9.2 (L1) Ensure 'Audit Other System Events' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Other System Events" /success:enable /failure:enable
+
+    - name: "17.9.3 (L1) Ensure 'Audit Security State Change' is set to 'Success'"
+      win_command: Auditpol /set /subcategory:"Security State Change" /success:enable
+
+    - name: "17.9.4 (L1) Ensure 'Audit Security System Extension' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"Security System Extension" /success:enable /failure:enable
+
+    - name: "17.9.5 (L1) Ensure 'Audit System Integrity' is set to 'Success and Failure'"
+      win_command: Auditpol /set /subcategory:"System Integrity" /success:enable /failure:enable  

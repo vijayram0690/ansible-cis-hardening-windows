@@ -1,0 +1,483 @@
+---
+- hosts: win
+  tasks:
+    - name: "18.1.1 (L1) Ensure 'Prevent enabling lock screen camera' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization
+              name: "NoLockScreenCamera"
+              data: "1"
+              type: dword
+    - name: "18.1.2 (L1) Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization
+              name: "NoLockScreenSlideshow"
+              data: "1"
+              type: dword  
+    - name: "18.1.2 (L1) Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization
+              name: "NoLockScreenSlideshow"
+              data: "1"
+              type: dword  
+    - name: "18.3.1 (L1) Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only)"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+              name: "LocalAccountTokenFilterPolicy"
+              data: "1"
+              type: dword   
+    - name: "18.5.4.1 (L1) Set 'NetBIOS node type' to 'P-node' (Ensure NetBT Parameter 'NodeType' is set to '0x2 (2)') (MS Only)"
+      win_regedit:
+              path: HKLM:\System\CurrentControlSet\Services\NetBT\Parameters
+              name: "NodeType"
+              data: "2"
+              type: dword 
+    - name: "18.5.4.2 (L1) Ensure 'Turn off multicast name resolution' is set to 'Enabled' (MS Only)"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient
+              name: "EnableMulticast"
+              data: "1"
+              type: dword  
+    - name: "18.5.11.2 (L1) Ensure 'Prohibit installation and configuration of Network Bridge on your DNS domain network' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections
+              name: "NC_AllowNetBridge_NLA"
+              data: "1"
+              type: dword 
+    - name: "18.5.11.3 (L1) Ensure 'Require domain users to elevate when setting a network's location' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections
+              name: "NC_StdDomainUserSetLocation"
+              data: "1"
+              type: dword
+    - name: "18.5.21.1 (L1) Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
+              name: "fMinimizeConnections"
+              data: "1"
+              type: dword  
+    - name: "18.8.3.1 (L1) Ensure 'Include command line in process creation events' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit
+              name: "ProcessCreationIncludeCmdLine_Enabled"
+              data: "0"
+              type: dword   
+    - name: "18.8.4.1 (L1) Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation
+              name: "AllowProtectedCreds"
+              data: "1"
+              type: dword  
+    - name: "18.8.14.1 (L1) Ensure 'Boot-Start Driver Initialization Policy' is set to 'Enabled: Good, unknown and bad but critical'"
+      win_regedit:
+              path: HKLM:\SYSTEM\CurrentControlSet\Policies\EarlyLaunch
+              name: "DriverLoadPolicy"
+              data: "3"
+              type: dword  
+    - name: "18.8.21.2 (L1) Ensure 'Configure registry policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}
+              name: "NoBackgroundPolicy"
+              data: "0"
+              type: dword      
+    - name: "18.8.21.3 (L1) Ensure 'Configure registry policy processing: Process even if the Group Policy objects have not changed' is set to 'Enabled: TRUE'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}
+              name: "NoGPOListChanges"
+              data: "0"
+              type: dword 
+    - name: "18.8.21.3 (L1) Ensure 'Turn off background refresh of Group Policy' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+              name: "DisableBkGndGroupPolicy"
+              data: "0"
+              type: dword    
+    - name: "18.8.22.1.1 (L1) Ensure 'Turn off downloading of print drivers over HTTP' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Printers
+              name: "DisableWebPnPDownload"
+              data: "1"
+              type: dword 
+    - name: "18.8.22.1.5 (L1) Ensure 'Turn off Internet download for Web publishing and online ordering wizards' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+              name: "NoWebServices"
+              data: "1"
+              type: dword
+    - name: "18.8.22.1.6 (L1) Ensure 'Turn off printing over HTTP' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Printers
+              name: "DisableHTTPPrinting"
+              data: "1"
+              type: dword 
+    - name: "18.8.27.1 (L1) Ensure 'Do not display network selection UI' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "DontDisplayNetworkSelectionUI"
+              data: "1"
+              type: dword
+    - name: "18.8.27.2 (L1) Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "DontEnumerateConnectedUsers"
+              data: "1"
+              type: dword 
+    - name: "18.8.27.3 (L1) Ensure 'Enumerate local users on domain-joined computers' is set to 'Disabled' (MS only)"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "EnumerateLocalUsers"
+              data: "0"
+              type: dword 
+    - name: "18.8.27.4 (L1) Ensure 'Turn off app notifications on the lock screen' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "DisableLockScreenAppNotifications"
+              data: "1"
+              type: dword  
+    - name: "18.8.27.5 (L1) Ensure 'Turn off picture password sign-in' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "BlockDomainPicturePassword"
+              data: "1"
+              type: dword 
+    - name: "18.8.27.6 (L1) Ensure 'Turn on convenience PIN sign-in' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+              name: "AllowDomainPINLogon"
+              data: "0"
+              type: dword  
+    - name: "18.8.33.6.1 (L1) Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
+              name: "DCSettingIndex"
+              data: "1"
+              type: dword
+    - name: "18.8.33.6.2 (L1) Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
+              name: "ACSettingIndex"
+              data: "1"
+              type: dword  
+    - name: "18.8.35.1 (L1) Ensure 'Configure Offer Remote Assistance' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "fAllowUnsolicited"
+              data: "0"
+              type: dword
+    - name: "18.8.35.2 (L1) Ensure 'Configure Solicited Remote Assistance' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "fAllowToGetHelp"
+              data: "0"
+              type: dword 
+    - name: "18.8.36.1 (L1) Ensure 'Enable RPC Endpoint Mapper Client Authentication' is set to 'Enabled' (MS only)"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Rpc
+              name: "EnableAuthEpResolution"
+              data: "1"
+              type: dword  
+    - name: "18.9.6.1 (L1) Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+              name: "MSAOptional"
+              data: "1"
+              type: dword   
+    - name: "18.9.8.1 (L1) Ensure 'Disallow Autoplay for non-volume devices' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
+              name: "NoAutoplayfornonVolume"
+              data: "1"
+              type: dword 
+    - name: "18.9.8.2 (L1) Ensure 'Set the default behavior for AutoRun' is set to 'Enabled: Do not execute any autorun commands'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+              name: "NoAutorun"
+              data: "1"
+              type: dword
+    - name: "18.9.8.3 (L1) Ensure 'Turn off Autoplay' is set to 'Enabled: All drives'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+              name: "NoDriveTypeAutoRun"
+              data: "1"
+              type: dword  
+    - name: "18.9.15.1 (L1) Ensure 'Do not display the password reveal button' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredUI
+              name: "DisablePasswordReveal"
+              data: "1"
+              type: dword   
+    - name: "18.9.15.2 (L1) Ensure 'Enumerate administrator accounts on elevation' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI
+              name: "EnumerateAdministrators"
+              data: "0"
+              type: dword 
+    - name: "18.9.26.1.1 (L1) Ensure 'Application: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
+              name: "Retention"
+              data: "0"
+              type: dword 
+    - name: "18.9.26.1.2 (L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
+              name: "MaxSize"
+              data: "32768"
+              type: dword
+    - name: "18.9.26.2.1 (L1) Ensure 'Security: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security
+              name: "Retention"
+              data: "0"
+              type: dword 
+    - name: "18.9.26.2.2 (L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security
+              name: "MaxSize"
+              data: "196608"
+              type: dword
+    - name: "18.9.26.3.1 (L1) Ensure 'Setup: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Setup
+              name: "Retention"
+              data: "0"
+              type: dword 
+    - name: "18.9.26.3.2 (L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Setup
+              name: "MaxSize"
+              data: "32768"
+              type: dword  
+    - name: "18.9.26.4.1 (L1) Ensure 'System: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System
+              name: "Retention"
+              data: "0"
+              type: dword 
+    - name: "18.9.26.4.2 (L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System
+              name: "MaxSize"
+              data: "32768"
+              type: dword  
+    - name: "18.9.30.2 (L1) Ensure 'Turn off Data Execution Prevention for Explorer' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
+              name: "NoDataExecutionPrevention"
+              data: "0"
+              type: dword  
+    - name: "18.9.30.3 (L1) Ensure 'Turn off heap termination on corruption' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
+              name: "NoDataExecutionPrevention"
+              data: "0"
+              type: dword  
+    - name: "18.9.30.4 (L1) Ensure 'Turn off shell protocol protected mode' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+              name: "PreXPSP2ShellProtocolBehavior"
+              data: "0"
+              type: dword  
+    - name: "18.9.52.1 (L1) Ensure 'Prevent the usage of OneDrive for file storage' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive
+              name: "DisableFileSyncNGSC"
+              data: "1"
+              type: dword  
+    - name: "18.9.52.2 (L1) Ensure 'Prevent the usage of OneDrive for file storage on Windows 8.1' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive
+              name: "DisableFileSync"
+              data: "1"
+              type: dword  
+    - name: "18.9.58.2.2 (L1) Ensure 'Do not allow passwords to be saved' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "DisablePasswordSaving"
+              data: "1"
+              type: dword  
+    - name: "18.9.58.3.3.2 (L1) Ensure 'Do not allow drive redirection' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "fDisableCdm"
+              data: "1"
+              type: dword    
+    - name: "18.9.58.3.9.1 (L1) Ensure 'Always prompt for password upon connection' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "fPromptForPassword"
+              data: "1"
+              type: dword  
+    - name: "18.9.58.3.9.2 (L1) Ensure 'Require secure RPC communication' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "fEncryptRPCTraffic"
+              data: "1"
+              type: dword 
+    - name: "18.9.58.3.9.3 (L1) Ensure 'Set client connection encryption level' is set to 'Enabled: High Level'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "MinEncryptionLevel"
+              data: "3"
+              type: dword 
+    - name: "18.9.58.3.11.1 (L1) Ensure 'Do not delete temp folders upon exit' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "DeleteTempDirsOnExit"
+              data: "0"
+              type: dword
+    - name: "18.9.58.3.11.2 (L1) Ensure 'Do not use temporary folders per session' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+              name: "PerSessionTempDir"
+              data: "0"
+              type: dword  
+    - name: "18.9.59.1 (L1) Ensure 'Prevent downloading of enclosures' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds
+              name: "DisableEnclosureDownload"
+              data: "1"
+              type: dword  
+    - name: "18.9.60.2 (L1) Ensure 'Allow indexing of encrypted files' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+              name: "AllowIndexingEncryptedStoresOrItems"
+              data: "0"
+              type: dword
+    - name: "18.9.76.14 (L1) Ensure 'Turn off Windows Defender AntiVirus' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender
+              name: "DisableAntiSpyware"
+              data: "0"
+              type: dword  
+    - name: "18.9.76.3.1 (L1) Ensure 'Configure local setting override for reporting to Microsoft MAPS' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet
+              name: "LocalSettingOverrideSpynetReporting"
+              data: "0"
+              type: dword
+    - name: "18.9.76.7.1 (L1) Ensure 'Turn on behavior monitoring' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+              name: "DisableBehaviorMonitoring"
+              data: "1"
+              type: dword 
+    - name: "18.9.76.10.1 (L1) Ensure 'Scan removable drives' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Scan
+              name: "DisableRemovableDriveScanning"
+              data: "1"
+              type: dword
+    - name: "18.9.76.10.2 (L1) Ensure 'Turn on e-mail scanning' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Scan
+              name: "DisableEmailScanning"
+              data: "1"
+              type: dword
+    - name: "18.9.81.3 (L1) Ensure 'Automatically send memory dumps for OS-generated error reports' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting
+              name: "AutoApproveOSDumps"
+              data: "0"
+              type: dword
+    - name: "18.9.81.2.1 (L1) Ensure 'Configure Default consent' is set to 'Enabled: Always ask before sending data'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent
+              name: "DefaultConsent"
+              data: "1"
+              type: dword
+    - name: "18.9.85.1 (L1) Ensure 'Allow user control over installs' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer
+              name: "EnableUserControl"
+              data: "0"
+              type: dword  
+    - name: "18.9.85.2 (L1) Ensure 'Always install with elevated privileges' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer
+              name: "AlwaysInstallElevated"
+              data: "0"
+              type: dword
+    - name: "18.9.86.1 (L1) Ensure 'Sign-in last interactive user automatically after a system-initiated restart' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System:DisableAutomaticRestartSignOn
+              name: "DisableAutomaticRestartSignOn"
+              data: "0"
+              type: dword    
+    - name: "18.9.86.1 (L1) Ensure 'Sign-in last interactive user automatically after a system-initiated restart' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+              name: "DisableAutomaticRestartSignOn"
+              data: "0"
+              type: dword 
+    - name: "18.9.95.1 (L1) Ensure 'Turn on PowerShell Script Block Logging' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+              name: "EnableScriptBlockLogging"
+              data: "0"
+              type: dword
+    - name: "18.9.95.2 (L1) Ensure 'Turn on PowerShell Transcription' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription
+              name: "EnableTranscripting"
+              data: "0"
+              type: dword
+    - name: "18.9.97.1.1 (L1) Ensure 'Allow Basic authentication' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client
+              name: "AllowBasic"
+              data: "0"
+              type: dword
+    - name: "18.9.97.1.2 (L1) Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client
+              name: "AllowUnencryptedTraffic"
+              data: "0"
+              type: dword 
+    - name: "18.9.97.1.3 (L1) Ensure 'Disallow Digest authentication' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client
+              name: "AllowDigest"
+              data: "1"
+              type: dword
+    - name: "18.9.97.2.1 (L1) Ensure 'Allow Basic authentication' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service
+              name: "AllowBasic"
+              data: "0"
+              type: dword
+    - name: "18.9.97.2.3 (L1) Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service
+              name: "AllowUnencryptedTraffic"
+              data: "0"
+              type: dword 
+    - name: "18.9.97.2.4 (L1) Ensure 'Disallow WinRM from storing RunAs credentials' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service
+              name: "DisableRunAs"
+              data: "1"
+              type: dword  
+    - name: "18.9.100.2 (L1) Ensure 'Configure Automatic Updates' is set to 'Enabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+              name: "NoAutoUpdate"
+              data: "1"
+              type: dword
+    - name: "18.9.100.3 (L1) Ensure 'Configure Automatic Updates: Scheduled install day' is set to '0 - Every day'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+              name: "ScheduledInstallDay"
+              data: "0"
+              type: dword
+    - name: "18.9.100.4 (L1) Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+              name: ":NoAutoRebootWithLoggedOnUsers"
+              data: "0"
+              type: dword  
+    - name: "18.9.100.4 (L1) Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled'"
+      win_regedit:
+              path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+              name: ":NoAutoRebootWithLoggedOnUsers"
+              data: "0"
+              type: dword                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
